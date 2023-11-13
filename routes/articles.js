@@ -3,7 +3,7 @@ const router = express.Router();
 const articlesController = require("../controller/articlesController");
 const { verifyToken } = require('../utils/jwt');
 
-/* GET users listing. */
+/* Article routes */
 router.get('/', articlesController.getArticles);
 router.get('/:articleId', articlesController.getSingleArticle);
 router.post('/', verifyToken, articlesController.createArticle);

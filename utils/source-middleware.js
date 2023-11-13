@@ -1,3 +1,4 @@
+/* Middleware to check source of request */
 const isSourceValid = (req, res, next) => {
     const allowedSources = ['android-app'];
     const sourceHeader = req.headers['source'];
