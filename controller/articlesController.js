@@ -5,7 +5,7 @@ const getArticles = async (req, res) => {
     const articles = await ArticleModel.find({});
      res.json(articles);
    } catch (error) {
-     res.status(500).json({ error });
+     res.status(400).json(error.message);
    }
 }
 
@@ -14,7 +14,7 @@ const getSingleArticle = async (req, res) => {
     const article = await ArticleModel.findOne({ _id: req.params.articleId });
     res.json(article);
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(400).json(error.message);
   }
 }
 
@@ -24,7 +24,7 @@ const createArticle = async (req, res) => {
     await article.save();
     res.json(article);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(400).json(error.message);
   }
 }
 
@@ -37,7 +37,7 @@ const updateArticle = async (req, res) => {
     await article.save();
     res.json(article);
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(400).json(error.message);
   }
 }
 const deleteArticle = async (req, res) => {
@@ -48,7 +48,7 @@ const deleteArticle = async (req, res) => {
     }
     res.status(204).json();
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(400).json(error.message);
   }
 }
 

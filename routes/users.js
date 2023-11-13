@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const userController = require("../controller/userController")
+const userController = require("../controller/userController");
+const { isSourceValid } = require('../utils/source-middleware');
+const { verifyToken } = require('../utils/jwt');
 
-router.post('/register', userController.registerUser);
-router.post('/login', userController.loginUser);
-router.get('/get-profile', userController.getProfile);
+router.post('/register', isSourceValid, userController.registerUser);
+router.post('/login', isSourceValid, userController.loginUser);
+router.get('/get-profile', verifyToken, userController.getProfile);
 
 module.exports = router;
