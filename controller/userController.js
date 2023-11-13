@@ -5,6 +5,8 @@ const {createToken} = require("../utils/jwt")
 const registerUser = async (req, res) => {
   try {
     const {name, email, password} = req.body
+    const isUserExist = await UserModel.findOne({email})
+    if(isUserExist) throw new Error("A user with same email already existing")
 
     const hash = await bcrypt.hash(password, 10)
     const user = new UserModel({name, email, password: hash});
