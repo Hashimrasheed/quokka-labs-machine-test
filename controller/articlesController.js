@@ -19,7 +19,7 @@ const getSingleArticle = async (req, res) => {
 }
 
 const createArticle = async (req, res) => {
-  const article = new ArticleModel(req.body);
+  const article = new ArticleModel({...req.body, createdBy: req.userId});
   try {
     await article.save();
     res.json(article);
@@ -46,7 +46,7 @@ const deleteArticle = async (req, res) => {
     if (!article) {
       return res.status(404).json("Article not found");
     }
-    res.status(204).json();
+    res.status(204).json({status: "Article deleted successfully"});
   } catch (error) {
     res.status(400).json(error.message);
   }

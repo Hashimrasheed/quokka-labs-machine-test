@@ -15,6 +15,7 @@ const verifyToken = (req, res, next) => {
         const validToken = jwt.verify(token, process.env.JWT_SECRET_KEY)
         if(!validToken) throw new Error("you are not authenticated. please login again")
         req.email = validToken.email;
+        req.userId = validToken._id;
         return next()
     } catch (error) {
         res.status(401).json(error.message) 

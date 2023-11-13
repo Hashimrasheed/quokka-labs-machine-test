@@ -9,6 +9,10 @@ const ArticleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
   date: { type: Date, default: Date.now },
 });
  
