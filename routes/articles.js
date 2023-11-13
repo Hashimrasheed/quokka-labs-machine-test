@@ -6,7 +6,7 @@ const articlesController = require("../controller/articlesController")
 router.get('/', articlesController.getArticles);
 router.get('/:articleId', articlesController.getSingleArticle);
 router.post('/', articlesController.createArticle);
-router.put('/:articleId', articlesController.updateArticle);
+router.patch('/:articleId', articlesController.updateArticle);
 router.delete('/:articleId', articlesController.deleteArticle);
 
 module.exports = router;
